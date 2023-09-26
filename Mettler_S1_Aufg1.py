@@ -1,4 +1,4 @@
-# Höhere Mathematik 1 - Serie 1 Aufgabe 1 Micha Mettler (mettlmi1)
+# Hoehere Mathematik 1 - Serie 1 Aufgabe 1 Micha Mettler (mettlmi1)
 
 # Imports
 import numpy as np
