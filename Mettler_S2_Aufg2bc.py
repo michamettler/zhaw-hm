@@ -1,4 +1,4 @@
-# Hoehere Mathematik 1 - Serie 2 Aufgabe 2b und 1c Micha Mettler (mettlmi1)
+# Hoehere Mathematik 1 - Serie 2 Aufgabe 2b und 2c Micha Mettler (mettlmi1)
 
 # Imports
 import numpy as np
