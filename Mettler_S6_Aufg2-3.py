@@ -3,6 +3,7 @@
 # Imports
 import numpy as np
 
+
 # Aufgabe 2
 def S6_Aufg2(A, b):
     n = np.size(b)
@@ -36,8 +37,8 @@ def S6_Aufg2(A, b):
     return M, x
 
 # Aufgabe 3
-A = np.array([[2,1,0],[4,0,-2],[1,2,4]])
-b = np.array([1,1,0])
+A = np.array([[20, 30, 10], [10, 17, 6], [2, 3, 2]])
+b = np.array([5200, 3000, 760])
 
 M, x = S6_Aufg2(A,b)
 
