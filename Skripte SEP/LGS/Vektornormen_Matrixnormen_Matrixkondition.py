@@ -1,9 +1,3 @@
-"""
-Berechnet die 1-Norm, 2-Norm und ∞-Norm für Vektoren und Matrizen
-
-@author: zahlesev@students.zhaw.ch
-@version: 1.0, 24.01.2021
-"""
 
 import numpy as np
 import math

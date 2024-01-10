@@ -1,18 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov  7 13:26:09 2020
-
-Höhere Mathematik 1, Serie 8, Gerüst für Aufgabe 2
-
-Description: calculates the QR factorization of A so that A = QR
-Input Parameters: A: array, n*n matrix
-Output Parameters: Q : n*n orthogonal matrix
-                   R : n*n upper right triangular matrix
-Remarks: none
-
-@author: knaa, zahlesev@students.zhaw.ch
-"""
-
 import numpy as np
 
 """==================== INPUT ===================="""

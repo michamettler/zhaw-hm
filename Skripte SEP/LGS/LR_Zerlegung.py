@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 """
 Lineares Gleichungssystem LGS Ax = b direkt mit LR-Zerlegung, mit oder ohne Spaltenpivotisierung, lösen.
 """
 
 import numpy as np
-import math
 
 """==================== INPUT ===================="""
-A = np.array([[0.8, 2.2, 3.6],
-              [2.0, 3.3, 4.0],
-              [1.2, 2.0, 5.8]], dtype=np.float64)
-b = np.array([2.4, 1.0, 4.0], dtype=np.float64)
+A = np.array([[20, 30, 10],
+              [10, 17, 6],
+              [2, 3, 2]], dtype=np.float64)
+b = np.array([5720, 3300, 836], dtype=np.float64)
 
 use_pivoting = True  # Ob mit Spaltenpivotisierung gearbeitet werden soll.
 
