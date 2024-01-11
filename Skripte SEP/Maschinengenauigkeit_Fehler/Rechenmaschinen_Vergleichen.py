@@ -5,16 +5,14 @@ from decimal import Decimal
     stelligen Binärarithmetik und die zweite einer 14-stelligen Dezimalarithmetik.
     Welche Maschine rechnet genauer? (Mit Begründung!)'
     
-    @version: 1.0, 23.01.2021
-    @author: zahlesev@students.zhaw.ch
 """
 
 """==================== INPUT ===================="""
-b1 = 8   # Basis der ersten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
-n1 = 2  # Anzahl Mantisse-Stellen der ersten Rechenmaschine
+b1 = 2   # Basis der ersten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
+n1 = 5  # Anzahl Mantisse-Stellen der ersten Rechenmaschine
 
-b2 = 2  # Basis der zweiten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
-n2 = 4  # Anzahl Mantisse-Stellen der zweiten Rechenmaschine
+b2 = 16 # Basis der zweiten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
+n2 = 2  # Anzahl Mantisse-Stellen der zweiten Rechenmaschine
 """==============================================="""
 
 print("Genauigkeit einer Rechenmaschine eps = B/2 * B^(-n) bei Basis B und n Mantisse-Stellen.\n")

@@ -6,16 +6,16 @@ import matplotlib.pyplot as plt
 ############################################
 
 # in the form x = F(x)
-f = lambda x: (230*x**4+18*x**3+9*x**2-9)/221
-df = lambda x: 920*x**3/221 + 54*x**2/221 + 18*x/221
+f = lambda x: np.log(np.sqrt(x) + 2)
+df = lambda x: 1/(2*np.sqrt(x)*(np.sqrt(x) + 2))
 
-range_a = -0.5
-range_b = 0.5
+range_a = 0.5
+range_b = 1.5
 
-plot_range_from = -1.5
-plot_range_to = 1.5
+plot_range_from = -5
+plot_range_to = 5
 
-tolerance = 1e-6
+tolerance = 1e-7
 x0 = 0.5
 
 ############################################
@@ -83,7 +83,7 @@ def fixpoint_iteration(f, x0, tol, alpha, max_iter=100):
     x_curr = f(x_prev)
 
     n = 1
-    while err_a_posteriori(x_prev, x_curr, alpha) > tol and n < max_iter:
+    while err_a_priori(x_prev, x_curr, alpha, n) > tol and n < max_iter:
         x_prev = x_curr
         x_curr = f(x_prev)
         n += 1

@@ -4,14 +4,12 @@ import math
 """Für Aufgaben der Art
     'Stellen Sie die Zahl x = √3 korrekt gerundet als Maschinenzahl x˜ in einer Fliesskomma-Arithmetik mit 5
     Binärstellen dar, und geben Sie den relativen Fehler von x˜ im Dezimalformat an.'
-    
-    @version: 1.0, 23.01.2021
-    @author: zahlesev@students.zhaw.ch
+
 """
 
 """==================== INPUT ===================="""
 x = math.sqrt(3)  # Gleitkommazahl im Dezimalsystem (positiv oder negativ)
-digitCount = 5    # Anzahl Fliesskommastellen / Mantissestellen
+digitCount = 15    # Anzahl Fliesskommastellen / Mantissestellen
 base = 2          # Basis (Binär = 2, Dezimal = 10, Hexadezimal = 16, alle Basen von 2 bis 16 funktionieren)
 """==============================================="""
 

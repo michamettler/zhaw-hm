@@ -1,11 +1,10 @@
 """
 Iterative Berechnung der Maschinengenauigkeit eps für binäre Basis
 
-@author: zahlesev@students.zhaw.ch
 """
 
 eqmin = 0
-x = 1.0
+x = 16
 
 while 1 + x != 1:
     x = x * 0.5

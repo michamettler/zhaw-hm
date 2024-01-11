@@ -41,7 +41,7 @@ def differentiate_and_plot_function(function, start, end):
     return derivative
 
 # Example usage
-input_function = "exp(x**2) + x**-3 -10"
+input_function = "log(sqrt(x) + 2)"
 interval_start = -2
 interval_end = 2
 derivative = differentiate_and_plot_function(input_function, interval_start, interval_end)
