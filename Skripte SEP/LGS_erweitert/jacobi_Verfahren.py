@@ -8,10 +8,17 @@
 import numpy as np
 
 """==================== INPUT ===================="""
-A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]], dtype=np.float64)
-b = np.array([19, 5, 34], dtype=np.float64)
-x0 = np.array([1, -1, 3], dtype=np.float64)
-tol = 1e-4  # Maximaler a-posteriori Fehler
+A = np.array([
+    [4, -1, 0, 0, 0, 0],
+    [-1, 4, -1, 0, 0, 0],
+    [0, -1, 4, -1, 0, 0],
+    [0, 0, -1, 4, -1, 0],
+    [0, 0, 0, -1, 4, -1],
+    [0, 0, 0, 0, -1, 4]
+    ], dtype=np.float64)
+b = np.array([4, 0, 0, 0, 0, 4], dtype=np.float64)
+x0 = np.array([0, 0, 0, 0, 0, 0], dtype=np.float64)
+tol = 1e-3  # Maximaler a-posteriori Fehler
 
 show_steps = True
 """==============================================="""

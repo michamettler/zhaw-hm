@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """==================== INPUT ===================="""
-A = np.array([[13, 6], [-20, -9]], dtype=np.float64)
+A = np.array([[13, -4], [30, -9]], dtype=np.float64)
 
 v0 = np.array([-1, 0]).T
 """==============================================="""

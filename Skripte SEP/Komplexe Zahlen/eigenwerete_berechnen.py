@@ -5,9 +5,8 @@ x = sp.symbols('x')
 
 # Erstelle eine Matrix mit diesen Variablen
 matrix = sp.Matrix([
-    [x, 1, 0],
-    [1, x, 2],
-    [0, 2, x],
+    [13, -4],
+    [30, -9]
 ])
 
 # Zeige die Matrix
