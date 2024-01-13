@@ -1,25 +1,17 @@
-"""
-    Toolbox fÃ¼rs Rechnen mit Komplexen Zahlen mit numpy
-
-    @version: 1.0, 24.01.2021
-    @author: zahlesev@students.zhaw.ch
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
 # Komplexe Zahl definieren:
-z = 2 + 3j
-z = complex(2, 3)
+z = 3-11j
 
 
-# Real-, ImaginÃ¤rteil, Komplex-Konjugierte, Betrag / LÃ¤nge, Winkel
+# Real-, Imaginärteil, Komplex-Konjugierte, Betrag / Länge, Winkel
 print("z = " + str(z))
 print("Realteil von z: Re(z) = " + str(z.real))
-print("ImaginÃ¤rteil von z: Im(z) = " + str(z.imag))
+print("Imaginärteil von z: Im(z) = " + str(z.imag))
 print("Komplex-konjugierte von z: z* = " + str(z.conjugate()))
-print("LÃ¤nge / Radius von z: r = " + str(np.sqrt(z * z.conjugate()).real))
+print("Länge / Radius von z: r = " + str(np.sqrt(z * z.conjugate()).real))
 print("Winkel von z in Radian: Ï† = " + str(np.angle(z)))
 print("Winkel von z in Grad: Ï† = " + str(np.angle(z, deg=True)))
 print("Winkel von z als Vielfaches von Ï€: Ï† = " + str(np.angle(z) / math.pi) + "Ï€")
@@ -38,7 +30,7 @@ phi = np.angle(z)
 phi_deg = np.angle(z, deg=True)
 
 print("z = {r} * (cos({phi}) + j*sin({phi})))".format(r=np.round(r, 2), phi=np.round(phi, 2)))  # Trigonometrische Form (Winkel in Radian)
-print("z = {r} * (cos({phi_deg}Â°) + j*sin({phi_deg}Â°)))".format(r=np.round(r, 2), phi_deg=np.round(phi_deg, 2)))  # Trigonometrische Form (Winkel in Radian)
+print("z = {r} * (cos({phi_deg}°) + j*sin({phi_deg}°)))".format(r=np.round(r, 2), phi_deg=np.round(phi_deg, 2)))  # Trigonometrische Form (Winkel in Radian)
 
 print("z = {r} * e^{phi}j".format(r=np.round(r, 2), phi=np.round(phi, 2)))  # Exponentialform
 
@@ -52,13 +44,13 @@ print("z2 = " + str(z2))
 print("Summe: z1 + z2 = " + str(z1 + z2))
 print("Differenz: z1 - z2 = " + str(z1 - z2))
 print("Produkt: z1 * z2 = " + str(z1 * z2))
-print("VerhÃ¤ltnis: z1 / z2 = " + str(z1 / z2))
+print("Verhältnis: z1 / z2 = " + str(z1 / z2))
 print("Potenz: zi ^ z2 = " + str(z1 ** z2))
 
 
 # Nullstellen eines Polynoms
 print("P(z) = z^3 - z^2 + 4z - 4")
-print("LÃ¶se P(z) = 0")
+print("Löse P(z) = 0")
 x = np.roots([1, -1, 4, -4])  # Koeffizienten des Polynoms
 x = np.round(x, 2)
 print("=> x = " + str(x))
@@ -67,7 +59,7 @@ print("=> x = " + str(x))
 # Betrag eines komplexen Vektors
 z = [1j, 3 + 3j, 4 - 7j]
 absZ = np.sqrt(np.sum([zi * zi.conjugate() for zi in z])).real
-print("LÃ¤nge von z = " + str(z) + ": |z| = " + str(absZ))
+print("Länge von z = " + str(z) + ": |z| = " + str(absZ))
 
 
 # Komplexe Zahlen in der Gausschen Zahlenebene darstellen

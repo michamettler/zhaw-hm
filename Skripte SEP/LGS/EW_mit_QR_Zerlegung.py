@@ -1,7 +1,7 @@
 import numpy as np
 
 """==================== INPUT ===================="""
-A = np.array([[1, -2, 0], [2, 0, 1], [0, -2, 1]], dtype=np.float64)
+A = np.array([[1, 0, 0], [2, 3, 0], [0, 1, 2]], dtype=np.float64)
 """==============================================="""
 
 def qr_decomposition(A_in, iteration_count):
