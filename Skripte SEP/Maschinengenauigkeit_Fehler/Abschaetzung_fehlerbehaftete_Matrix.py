@@ -2,13 +2,16 @@
 import numpy as np
 
 """==================== INPUT ===================="""
-A = np.array([[20, 30, 10],
-              [10, 17, 6],
-              [2, 3, 2]], dtype=np.float64)
-b = np.array([5720, 3300, 836], dtype=np.float64)
+A = np.array([
+    [240, 120, 80],
+    [60, 180, 170],
+    [60, 90, 500],
+])
+
+b = np.array([3080, 4070, 5030])
 
 db = 100  # Maximaler absoluter Fehler in b
-dA = 0.1  # Maximaler absoluter Fehler in A
+dA = 0.05  # Maximaler absoluter Fehler in A
 """==============================================="""
 
 print("Betrachte gestörtes Gleichungssystem A~x~ = b~, wobei b~ in jeder Komponente um maximal " + str(db) + " von b abweicht und A~ in jeder Komponente um maximal " + str(dA) + " von A abweicht.")

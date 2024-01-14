@@ -1,97 +1,100 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 15 17:37:39 2020
+
+SEP FS20 Aufgabe 3
+
+@author: knaa
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
-############################################
-# Definitions                              #
-############################################
+N=100
+epsIncr=1e-6
 
-# in the form x = F(x)
-f = lambda x: np.log(np.sqrt(x) + 2)
-df = lambda x: 1/(2*np.sqrt(x)*(np.sqrt(x) + 2))
+xL=1
+xR=2
 
-range_a = 0.5
-range_b = 1.5
+def F(x): return 1./(np.cos(x+np.pi/4)-1)+2
+def dF(x) : return np.sin(x + np.pi/4)/(np.cos(x + np.pi/4) - 1)**2 
+#Achtung: die Ableitung konnte damals mit Matlab berechnet werden. In Python sind wir noch nicht so weit.
+#Allerdings ist auch die Berechnung der Ableitung von Hand nicht wirklich schwer.
 
-plot_range_from = -5
-plot_range_to = 5
+# Aufgabe a)
+print('\nFixpunktiteration a)\n')
 
-tolerance = 1e-7
-x0 = 0.5
-
-############################################
-# Visualization                            #
-############################################
-
-x = np.linspace(plot_range_from, plot_range_to, 1000)
-y = f(x)
-dy = df(x)
-
+xPlot=np.arange(0,np.pi+0.01,0.01)
 plt.figure(1)
-plt.plot(x, x, label='y = x')
-plt.plot(x, y, label='F(x)')
-plt.plot(x, dy, ':', label='F\'(x)')
-plt.legend()
-plt.show()
+plt.plot(xPlot,xPlot,xPlot,F(xPlot),xPlot,np.abs(dF(xPlot)),[xL,xL],[0,np.pi],'k-.',[xR,xR],[0,np.pi],'k-.')
+plt.legend(['y=x','y=F(x)',"y=abs(F'(x))"])
+plt.axis([0,np.pi,0,np.pi])
 
-############################################
-# Banach fixed point theorem               #
-############################################
+# Aufgabe b)
+print('\nFixpunktiteration b)\n')
 
-range_y = f(np.linspace(range_a, range_b, 1000))
-range_y_min = np.min(range_y)
-range_y_max = np.max(range_y)
+fx=F(np.array([xL,xR]))
+fxMin=np.min(fx)
+fxMax=np.max(fx)
+dfx=dF(np.array([xL,xR]))
+lambd = np.max(np.abs(dfx))
 
-if range_y_min < min(range_a, range_b) or range_y_max > max(range_a, range_b):
-    print('Banach fixed point theorem does not hold. Range of F is not contained in [a, b].')
+print(lambd<1)
+print(fxMin>xL)
+print(fxMax<xR)
+# Banach erfüllt, wenn 3 x logisch 1
 
-# Lipschitz constant
-range_dy = df(np.linspace(range_a, range_b, 1000))
-lipschitz = np.max(np.abs(range_dy))
-print(f'Lipschitz constant: {lipschitz}')
+# Aufgabe c)
+print('\nFixpunktiteration c)\n')
+lambd
+xj =1.3376
+xj1=1.3441
+errEst=lambd/(1-lambd)*(xj1-xj)
 
-if lipschitz < tolerance or lipschitz > 1:  # 0 < alpha < 1
-    print('Banach fixed point theorem does not hold. Lipschitz constant is too large.')
+# Verbesserung von lambda (da Graph von dF monoton abnehmend)
+xj =1.3376;
+xj1=1.3441;
+lambdaEst=dF(xj)
+errEst=lambdaEst/(1-lambdaEst)*(xj1-xj)
 
-# Check if fixed point iteration converges
-df0 = abs(df(x0))
-if df0 >= 1:
-    print(f'Fixed point iteration does not converge. f\'(x0) = {df0} >= 1')
+# Aufgabe d)
+print('\nFixpunktiteration d)\n')
 
-
-############################################
-# Fixpoint iteration                       #
-############################################
-
-def err_a_priori(x0, x1, alpha, n):
-    return (alpha ** n) * abs(x1 - x0) / (1 - alpha)
-
-
-def err_a_posteriori(x_prev, x_curr, alpha):
-    return alpha * abs(x_curr - x_prev) / (1 - alpha)
-
-
-def estimate_number_of_steps(tol, x0, x1, alpha):
-    # tol <= ((alpha^n) / (1 - alpha)) * | x_1 - x_0 |
-    # tol * (1 - alpha) <= (alpha^n) * | x_1 - x_0 |
-    # (tol * (1 - alpha)) / | x_1 - x_0 | <= alpha^n
-    # log((tol * (1 - alpha)) / | x_1 - x_0 |) / log(alpha) <= n
-    return np.log((tol * (1 - alpha)) / abs(x1 - x0)) / np.log(alpha)
+def fixIt(f,x0,epsIncr,lambd):
+    import numpy as np
+    k=0
+    notConverged=True
+    N=1000
+    
+    x0
+    while (notConverged and k<N):
+        x1=f(x0)
+        incr=np.abs(x1-x0)
+        error=lambd/(1-lambd)*incr
+        notConverged=error>epsIncr
+        k=k+1
+        x0=x1
+    n=k
+    return(x1,n)
 
 
-def fixpoint_iteration(f, x0, tol, alpha, max_iter=100):
-    x_prev = x0
-    x_curr = f(x_prev)
+x0=1
+[xF,n]=fixIt(F,x0,epsIncr,lambd)
+print('xF=%.4E'% xF,'(n=%.4E Iterationen)\n' %n)
 
-    n = 1
-    while err_a_priori(x_prev, x_curr, alpha, n) > tol and n < max_iter:
-        x_prev = x_curr
-        x_curr = f(x_prev)
-        n += 1
+# Aufgabe e)
+print('\nFixpunktiteration e)\n')
+def fA(x): return (x-1)/(x-2)-np.cos(x+np.pi/4)
+def fB(x): return F(x)
+def fC(x): return  x+(2-1/(np.cos(x+np.pi/4)-1))
+def fD(x): return np.cos(x+np.pi/4)-1/(x-2)-1
 
-    return x_curr, n
+print("A ist ", np.abs(fA(xF))<1e-6)
+print("B ist ",np.abs(fB(xF))<1e-6)
+print("C ist ",np.abs(fC(xF))<1e-6)
+print("D ist ",np.abs(fD(xF))<1e-6)
+# d.h. korrekt ist A) und D)
 
-x_fixed_point, n = fixpoint_iteration(f, x0, tolerance, lipschitz)
-print(f'Fixed point: {x_fixed_point}, after {n} iterations')
 
-estimated = estimate_number_of_steps(tolerance, x0, f(x0), lipschitz)
-print(f'estimated iterations {estimated}')
+
+
+

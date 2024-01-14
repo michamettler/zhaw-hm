@@ -9,7 +9,7 @@ import math
 
 """==================== INPUT ===================="""
 x = math.sqrt(3)  # Gleitkommazahl im Dezimalsystem (positiv oder negativ)
-digitCount = 15    # Anzahl Fliesskommastellen / Mantissestellen
+digitCount = 5    # Anzahl Fliesskommastellen / Mantissestellen
 base = 2          # Basis (Binär = 2, Dezimal = 10, Hexadezimal = 16, alle Basen von 2 bis 16 funktionieren)
 """==============================================="""
 

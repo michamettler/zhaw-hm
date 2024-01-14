@@ -9,7 +9,7 @@ from decimal import Decimal
 
 """==================== INPUT ===================="""
 b1 = 2   # Basis der ersten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
-n1 = 46  # Anzahl Mantisse-Stellen der ersten Rechenmaschine
+n1 = 16  # Anzahl Mantisse-Stellen der ersten Rechenmaschine
 
 b2 = 10 # Basis der zweiten Rechenmaschine (Binär = 2, Dezimal = 10, Oktal = 8, Hexadezimal = 16)
 n2 = 14  # Anzahl Mantisse-Stellen der zweiten Rechenmaschine

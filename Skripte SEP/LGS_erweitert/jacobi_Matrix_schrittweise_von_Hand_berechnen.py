@@ -8,15 +8,17 @@ INPUT
 =======================================================================================================================
 """
 
+a = sy.symbols('a')
+
 # ACHTUNG: Für sinus/cosinus/Exponentialfunktion immer sy.sin/sy.cos/sy.exp/sy.ln/sy.abs verwenden!
 f = sy.Matrix([
-    8*x3 + 5*x2 + 2*x1,   # f1
-    5*x3 + 9*x2 + 1*x1,  # f2
-    4*x3 + 2*x2 + 7*x1       # f3
+     x1 + x2 + sy.exp(1)**x3**1.8,   # f1
+     x1 + x2 + sy.exp(1)**x3**1.3,  # f2
+     x1 + x2 + sy.exp(1)**x3**2      # f3
 ])
 
 x = sy.Matrix([x1, x2, x3])  # Wenn mehr oder weniger als 3 Variablen auftreten, diese Liste anpassen!
-x0 = sy.Matrix([19, 5, 34])    # Stelle, an welcher die Jacobi-Matrix ausgewertet werden soll, z.B. x0 bei Newton
+x0 = sy.Matrix([1, 2, 3])    # Stelle, an welcher die Jacobi-Matrix ausgewertet werden soll, z.B. x0 bei Newton
 
 """
 =======================================================================================================================

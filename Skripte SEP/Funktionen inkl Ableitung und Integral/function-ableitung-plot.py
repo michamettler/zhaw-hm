@@ -1,48 +1,41 @@
-import sympy as sp
-import matplotlib.pyplot as plt
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 15 18:29:47 2020
+
+SEP FS20 Aufgabe 4
+
+@author: knaa
+"""
+
 import numpy as np
 
-def differentiate_and_plot_function(function, start, end):
-    # Define the symbol x for sympy
-    x = sp.symbols('x')
-    
-    # Convert the input string to a sympy expression
-    parsed_function = sp.sympify(function)
-    
-    # Calculate the derivative
-    derivative = sp.diff(parsed_function, x)
-    
-    # Convert sympy functions to numpy functions
-    f = sp.lambdify(x, parsed_function, 'numpy')
-    f_prime = sp.lambdify(x, derivative, 'numpy')
+# Aufgabe a)
+A=np.array([[15, 0, 1],[ 1, 3, 7],[ 0, 1, 6]])
+y=np.array([[21, 67, 44]]).T
 
-    # Generate x values for plotting
-    x_vals = np.linspace(start, end, 400)
 
-    # Compute y values for the function and its derivative
-    y_vals = f(x_vals)
-    y_prime_vals = f_prime(x_vals)
+""" 
+Die 1. und 2. Zeile müssen vertauscht werden, da ansonsten ein
+Diagonal-Element 0 ist und die Diagonaldominanz nicht mehr gegeben ist ! 
+""" 
 
-    # Plot the function and its derivative
-    plt.figure(figsize=(10, 6))
-    plt.plot(x_vals, y_vals, label=str(parsed_function))
-    plt.plot(x_vals, y_prime_vals, label=str(derivative) + ' (derivative)')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Function and its Derivative')
-    plt.axhline(0, color='black',linewidth=0.5)
-    plt.axvline(0, color='black',linewidth=0.5)
-    plt.grid(color = 'gray', linestyle = '--', linewidth = 0.5)
-    plt.xlim(start, end)  # Set x-axis limits
-    plt.ylim(start, end)  # Set y-axis limits to the same as x-axis
-    plt.legend()
-    plt.show()
+D=np.diag(np.diag(A))
+R=np.triu(A)-D
+L=np.tril(A)-D
 
-    return derivative
+# Aufgabe b)
 
-# Example usage
-input_function = "log(sqrt(x) + 2)"
-interval_start = -2
-interval_end = 2
-derivative = differentiate_and_plot_function(input_function, interval_start, interval_end)
-print("The derivative of", input_function, "is", derivative)
+x=np.array([[0, 0, 0]]).T
+
+for k in np.arange(1,7):
+   x=-np.linalg.inv(D+L)@R@x+np.linalg.inv(D+L)@y
+   print(x)
+
+
+# Aufgaben c)
+
+"""
+Bei grossen Gleichungssystemen ist der numerische Aufwand von exakten
+Lösungsverfahren zu gross. Iterative Verfahren sind bei solchen
+(insbesondere diagonal dominanten) Gleichungsystemen effizienter
+"""

@@ -23,10 +23,10 @@ x = sy.symbols('x')
 
 """==================== INPUT ===================="""
 # ACHTUNG: Für Funktionen wie cos usw die Sympy-Befehle brauchen, z.B. sy.cos(), sy.exp() usw.
-F = sy.ln(sy.sqrt(x) + 3)  # Linke Seite der Fixpunktgleichung F(x) = x
-x0 = 1.75  # Startwert der Iteration. (Setze x0 = 1 für divergierenden Fixpunkt in [0, 1])
+F = 1/sy.cos(x+sy.pi/4)-1 + 2  # Linke Seite der Fixpunktgleichung F(x) = x
+x0 = 1  # Startwert der Iteration. (Setze x0 = 1 für divergierenden Fixpunkt in [0, 1])
 precision = 1e-9  # Wie genau die Lösung sein soll. Bei 10^-6 = 1e-6
-min_iterations = 20  # Minimale Anzahl Iterationen bei divergierenden Folgen, bevor abgebrochen wird.
+min_iterations = 5  # Minimale Anzahl Iterationen bei divergierenden Folgen, bevor abgebrochen wird.
 
 # Ob die Lipschitz-Konstante α berechnet werden soll, um die a-priori
 # und a-posteriori Abschätzungen zu berechnen, sowie zu prüfen, ob der
@@ -35,12 +35,12 @@ check_banach_and_calculate_estimations = True
 
 # Intervall [a, b], in welchem sich der gesuchte Fixpunkt befindet (nur benötigt wenn Lipschitz-Konstante
 # berechnet werden soll) a muss kleiner als b sein.
-a = 0.75; b = 1.75
+a = 1; b = 2
 max_a_priori_error = 1e-6
 
 # Ob die Fixpunktgleichung geplottet werden soll
 show_plots = True
-ap = 0; bp = 2  # Intervall, über welchem geplottet werden soll.
+ap = -5; bp = 5  # Intervall, über welchem geplottet werden soll.
 """==============================================="""
 
 
