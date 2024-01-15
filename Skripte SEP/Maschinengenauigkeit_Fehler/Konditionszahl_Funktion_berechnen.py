@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 
 # INPUT
 x = sp.symbols('x')
-meine_funktion = x**2 * sp.exp(-x)
+meine_funktion = x**2 * sp.sin(x)
 
-"""
+
 def K(x):
-    return sp.exp(x)*sp.Abs((x**2*sp.exp(-x) - 2*x*sp.exp(-x))/x) #Resultat der Kondition einfügen
-"""
+    return np.abs((2*np.sin(x)+x*np.cos(x))/np.sin(x)) #Resultat der Kondition einfügen
+
 
 # Werte für x0 und den maximalen relativen Fehler
 x0 = sp.pi / 3
@@ -41,8 +41,8 @@ def grenzwert_konditionszahl_bei_unendlich():
     return grenzwert
 
 # Halblogarithmisch plotten
-#plt.semilogy(interval,K(interval))
-#plt.xlabel('x'); plt.ylabel('K(x)'); plt.grid()   
+plt.semilogy(interval,K(interval))
+plt.xlabel('x'); plt.ylabel('K(x)'); plt.grid()   
 
 
 # Ausgaben
@@ -52,4 +52,4 @@ print("Maximaler absoluter Fehler:", maximaler_absoluter_fehler.evalf())
 grenzwert_bei_null = grenzwert_konditionszahl_bei_null()
 print("Konditionszahl der Funktion mit x => 0:", grenzwert_bei_null)
 #grenzwert_bei_unendlich = grenzwert_konditionszahl_bei_unendlich()
-#print("Konditionszahl der Funktion mit x => Unendlich:", grenzwert_bei_unendlich)
+3print("Konditionszahl der Funktion mit x => Unendlich:", grenzwert_bei_unendlich)
