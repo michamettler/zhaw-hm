@@ -49,3 +49,4 @@ if __name__ == "__main__":
     C = Matrix([1, 2, 3])
     D = Matrix([x, y, z])
     print("Kreuzprodukt C und D =", cross_product(C, D))
+    print(Matrix([1, 3]).det)
