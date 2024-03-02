@@ -21,6 +21,7 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend(['g2(x)'])
 plt.title('Auslöschung')
+plt.show()
 
 # Erklärung b)
 # Nahe 0 wird das Resultat massiv verfälscht
