@@ -18,7 +18,7 @@ plt.contour(X1, X2, Y1, levels=[0], colors='r')
 plt.contour(X1, X2, Y2, levels=[0], colors='b')
 plt.xlabel('x')
 plt.ylabel('y')
-#plt.show()
+plt.show()
 
 # Lösungen: (-1300, 1600), (-200, 100), (300, 200), (700, 900)
 
