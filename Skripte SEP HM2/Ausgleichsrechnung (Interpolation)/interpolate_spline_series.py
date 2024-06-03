@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # INPUT
-x = np.array([4., 6., 8., 10.])
-y = np.array([6., 3., 9., 0.])
+x = np.array([0., 0.5, 2., 3.])
+y = np.array([1., 2., 2.5, 0.])
 
-xx = np.arange(4., 10., 0.1)
+xx = np.arange(0, 3, 0.1)
 
 #------------------------
 

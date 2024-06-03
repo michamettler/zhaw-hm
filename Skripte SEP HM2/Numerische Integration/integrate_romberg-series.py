@@ -2,8 +2,8 @@ import numpy as np
 
 # INPUT
 def f(x):
-    return np.cos(x**2)
-a = 0.; b = np.pi
+    return 6*x**2 - 2*x
+a = 0.; b = 4
 m = 4
 #-----------------------------------------------
 
