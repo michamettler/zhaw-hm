@@ -2,7 +2,7 @@ import sympy as sy
 
 x, y, z = sy.symbols('x y z')
 
-f = x**3 + x * y + sy.sin(y)  # ACHTUNG: Für sinus/cosinus/Exponentialfunktion immer sy.sin/sy.cos/sy.exp verwenden!
+f = x*sy.cos(y) + z  # ACHTUNG: Für sinus/cosinus/Exponentialfunktion immer sy.sin/sy.cos/sy.exp verwenden!
 print('f = ' + str(f))
 
 # 1. Partielle Ableitung nach x

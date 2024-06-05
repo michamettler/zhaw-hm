@@ -55,6 +55,7 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend(['f(x)', 'df(x)', 'F(x)'])
 plt.title('Plot von Polynom, Ableitung und Stammfunktion')
+plt.show()
     
 
     
