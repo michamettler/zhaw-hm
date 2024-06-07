@@ -18,16 +18,15 @@ def interpolate_runge_kutta(f, x, h, y0):
 
 
 def interpolate_runge_kutta_custom(f, x, h, y0):
-    s = 4
+    s = 3
 
     a = np.array([
-        [0, 0, 0, 0],
-        [1, 0, 0, 0],
-        [1, 1, 0, 0],
-        [0.75, 0.5, 0.75, 0]
+        [0., 0., 0.],
+        [1/3, 0., 0.],
+        [0., 2/3, 0.],
     ], dtype=np.float64)
-    b = np.array([0.1, 0.1, 0.4, 0.4], dtype=np.float64)
-    c = np.array([0.75, 0.25, 0.75, 0.5], dtype=np.float64)
+    b = np.array([0., 1/3, 2/3], dtype=np.float64)
+    c = np.array([1/4, 0., 3/4], dtype=np.float64)
 
     y = np.full(x.shape[0], 0, dtype=np.float64)
     y[0] = y0
@@ -40,25 +39,29 @@ def interpolate_runge_kutta_custom(f, x, h, y0):
 
         y[i + 1] = y[i] + h * np.sum([b[n] * k[n] for n in range(s)])
 
-    return y
+    return y, k
 
 
 def f(x, y):
-    return 1 - y / x
+    return x/y
 
 
 def y_exact(x):
-    return (x / 2.0) + 9 / (2.0 * x)
+    return np.sqrt(x**2 + 3)
 
-
+#INPUT
 a = 1
-b = 6
-h = 0.01
-y0 = 5
+b = 4
+h = 3
+y0 = 1
+#-----------------------------
+
 x = np.arange(a, b + h, step=h, dtype=np.float64)
 
 y = interpolate_runge_kutta(f, x, h, y0)
-y_c = interpolate_runge_kutta_custom(f, x, h, y0)
+y_c, k= interpolate_runge_kutta_custom(f, x, h, y0)
+
+print(k)
 
 plt.figure(0)
 plt.title('Runge-Kutta vs Runge-Kutta-custom vs Exact')

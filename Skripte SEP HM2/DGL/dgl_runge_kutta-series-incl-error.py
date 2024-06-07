@@ -4,9 +4,12 @@ import matplotlib.pyplot as plt
 # INPUT
 
 def f(x, y):
-    return 1 - y/x
+    return x/y
 
-y0 = 5.
+def y_exact(x):
+    return x/2. + 9./(2.*x)
+
+y0 = 2.
 a = 1.
 b = 6.
 h = 0.01
@@ -32,9 +35,6 @@ def R4_klassisch(f, a, b, n, y0):
     return x, y
 
 x, y_klassisch = R4_klassisch(f, a, b, n, y0)
-
-def y_exact(x):
-    return x/2. + 9./(2.*x)
 
 plt.figure(1)
 plt.plot(x, y_klassisch, color="blue", linestyle="--", label="Lösung mit klassischem R4")
@@ -74,7 +74,7 @@ def RK4_eigen(f, a, b, n, y0):
         y[i+1] = y[i] + h*k
     return x, y
 
-# PLOTTEN
+# PLOTTEN und Fehler
 x, y_eigen = RK4_eigen(f, a, b, n, y0)
 plt.figure(2)
 plt.plot(x, y_eigen, color="red", linestyle="-", label="Lösung mit eigenem R4")

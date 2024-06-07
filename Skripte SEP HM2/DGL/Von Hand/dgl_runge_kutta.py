@@ -3,8 +3,11 @@ import sympy as sp
 import IPython.display as dp
 
 
-def classic(f, a, b, n, y0, print_steps=False):
-    h = (b - a) / n
+def classic(f, a, b, n, h, y0, print_steps=False):
+    if h is None:
+        h = (b - a) / n
+    else:
+        h = h
 
     x_list = [a]
     y_list = [y0]
