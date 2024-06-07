@@ -1,58 +1,40 @@
-import sympy as sp
 import numpy as np
-import scipy.integrate as integrate
 
-#######################
-# Definitionen        #
-#######################
+# SUMMIERTE GAUSS-FORMEL
 
-a = 0
-b = 0.5
-n = 3
+# Implementation
+def sum_gauss(f, a, b, h):
+    n = int((b - a) / h)
+    G = 0
+    alpha = 1 / 3**0.5 * 0.5
+    for i in range(0, n):
+        xm = a + i * h + h / 2  # mittlerer x-Wert des i-ten Teilintervalls
+        G = G + f(xm - alpha * h / 2) + f(xm + alpha * h / 2)
+    G = G / 2 * h
+    return G
 
-# region variant function 1: numpy
-f = lambda x: np.exp(-x ** 2)
-# endregion
+# INPUT
+def f(x):
+    return 1. / x
 
+a = 2.
+b = 4.
+I = np.log(2.)
+print(I)  # 0.6931471805599453
 
-# region viariant function 2: sympy
-x = sp.Symbol('x')
-sp_f = sp.exp(-x ** 2)
-f = sp.lambdify(x, sp_f, 'numpy')
-# endregion
+# Kontrolle mit h = 1
+G = sum_gauss(f, a, b, 1.)
+print(G)  # 0.693076382821177
 
-#######################
-# Integration         #
-#######################
+# Fehler fuer h = 1, 0.1, 0.01, ...
+kmax = 5
+for k in range(0, kmax+1):
+    h = 10.**(-k)
+    G = sum_gauss(f, a, b, h)
+    print(h, G, np.abs(G - I))
 
-integral = integrate.quad(f, a, b)
-
-
-def gauss_1(f, a, b):
-    return (b - a) * f((a + b) / 2)
-
-
-def gauss_2(f, a, b):
-    w = (a + b) / 2
-    t = 1 / np.sqrt(3) * (b - a) / 2
-    return (b - a) / 2 * (f(-t + w) + f(t + w))
-
-
-def gauss_3(f, a, b):
-    w = (a + b) / 2
-    t = np.sqrt(0.6) * ((b - a) / 2)
-
-    return ((b - a) / 2) * ((5 / 9) * f(-t + w) + (8 / 9) * f(w) + (5 / 9) * f(t + w))
-
-
-lookup = {
-    1: gauss_1,
-    2: gauss_2,
-    3: gauss_3
-}
-
-estimation = lookup[n](f, a, b)
-
-print(f"estimated: {estimation}")
-print(f"real:      {integral[0]}")
-print(f"error:     {np.abs(integral[0] - estimation)}")
+# Output format:
+# h       G(h)                    |G(h) - I| (absolute error)
+# 1.0     0.693076382821177       7.05422778274552e-05
+# 0.1     0.6931471724354499      8.124495409767007e-09
+# 0.01    0.6931471805591316      8.136824547477772

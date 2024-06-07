@@ -41,7 +41,7 @@ y_plot_qr = np.polyval(lam_qr, x_plot)
 
 plt.plot(x_data, y_data, marker='o', color='black', linestyle='', label='Datenpunkte')
 plt.plot(x_plot, y_plot, color='red', linestyle='--', label='Normalengleichung ohne QR')
-plt.plot(x_plot, y_plot_qr, color='blue', linestyle='-.', label='Normalengleichung mit QR')
+plt.plot(x_plot, y_plot_qr, color='blue', linestyle='-.', label='Normalengleichung mit QR') # i.d.R besser konditioniert als Normalgleichung ohne QR
 plt.xlabel('Temperatur')
 plt.ylabel('Dichte')
 plt.grid()
