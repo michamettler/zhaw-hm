@@ -25,8 +25,8 @@ def interpolate_runge_kutta_custom(f, x, h, y0):
         [1/3, 0., 0.],
         [0., 2/3, 0.],
     ], dtype=np.float64)
-    b = np.array([0., 1/3, 2/3], dtype=np.float64)
-    c = np.array([1/4, 0., 3/4], dtype=np.float64)
+    c = np.array([0., 1/3, 2/3], dtype=np.float64)
+    b = np.array([1/4, 0., 3/4], dtype=np.float64)
 
     y = np.full(x.shape[0], 0, dtype=np.float64)
     y[0] = y0
@@ -50,7 +50,7 @@ def y_exact(x):
     return np.sqrt(x**2 + 3)
 
 #INPUT
-a = 1
+a = 0
 b = 4
 h = 3
 y0 = 1
