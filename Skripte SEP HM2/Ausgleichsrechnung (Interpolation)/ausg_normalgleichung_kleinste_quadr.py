@@ -1,5 +1,3 @@
-# WICHTIG FÜR PRÜFUNG
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -8,8 +6,6 @@ import matplotlib.pyplot as plt
 x_data = np.array([0, 1, 2, 3, 4, 5])
 y_data = np.array([0.54, 0.44, 0.28, 0.18, 0.12, 0.08])
 n = np.size(x_data)
-
-#------------------
 
 # Je nachdem Anzahl Polynome anpassen
 
@@ -40,9 +36,9 @@ print('lam_qr =', lam_qr)
 
 print('||lam - lam_qr|| =', np.linalg.norm(lam - lam_qr))
 
-x_plot = np.arange(0, 101, 1)
-y_plot = np.polyval(lam, x_plot)
-y_plot_qr = np.polyval(lam_qr, x_plot)
+x_plot = np.linspace(x_data.min(), x_data.max(), 101)
+y_plot = np.polyval(lam[::-1], x_plot)  # Reverse order of lam for np.polyval
+y_plot_qr = np.polyval(lam_qr[::-1], x_plot)  # Reverse order of lam_qr for np.polyval
 
 plt.plot(x_data, y_data, marker='o', color='black', linestyle='', label='Datenpunkte')
 plt.plot(x_plot, y_plot, color='red', linestyle='--', label='Normalengleichung ohne QR')
@@ -56,14 +52,13 @@ plt.show()
 print('Konditionszahl von A^T*A bez. 2-er Norm =', np.linalg.cond(A_T @ A, 2))
 print('Konditionszahl von R bez. 2-er Norm =', np.linalg.cond(R, 2))
 
-
-lam_poly = np.polyfit(x_data, y_data, 2)
+lam_poly = np.polyfit(x_data, y_data, 4)  # Fit a 4th order polynomial
 print('lam_poly =', lam_poly)
-print('||lam - lam_poly|| =', np.linalg.norm(lam - lam_poly))
+print('||lam - lam_poly|| =', np.linalg.norm(lam - lam_poly[::-1]))  # Compare correctly ordered lam
 
 E = np.linalg.norm(y_data - A @ lam, 2)**2
 E_qr = np.linalg.norm(y_data - A @ lam_qr, 2)**2
-E_poly = np.linalg.norm(y_data - A @ lam_poly, 2)**2
+E_poly = np.linalg.norm(y_data - np.polyval(lam_poly, x_data), 2)**2  # Use np.polyval for E_poly
 print('E =', E)
 print('E_qr =', E_qr)
 print('E_poly =', E_poly)
