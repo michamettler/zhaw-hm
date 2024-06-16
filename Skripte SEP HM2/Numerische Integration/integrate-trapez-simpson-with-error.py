@@ -19,7 +19,7 @@ def sum_simpson(f, a, b, h):
         x = a + i * h
         S = S + 2 * f(x) + 4 * f(x + h / 2)
     S = h / 6 * S
-    return S
+    return S, n
 
 # Berechnung der maximalen Schrittweite h
 def max_schrittweite(f, f_second_derivative, a, b, max_error):
@@ -45,7 +45,7 @@ max_error = 1e-3  # Gewünschte Genauigkeit
 h_max = 0.0618
 
 # Trapezregel anwenden mit maximaler Schrittweite
-T, n_iterations = sum_trapez(f, a, b, h_max)
+T, n_iterations = sum_simpson(f, a, b, h_max)
 print(f"Die maximale Schrittweite h beträgt: {h_max:.6f}")
 print(f"Die Näherung des Integrals mit der Trapezregel beträgt: {T:.6f}")
 print(f"Der Fehler beträgt: {np.abs(T - I):.6f}")
