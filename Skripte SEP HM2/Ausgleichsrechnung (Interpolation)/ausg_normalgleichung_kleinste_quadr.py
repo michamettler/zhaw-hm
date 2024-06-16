@@ -11,6 +11,8 @@ n = np.size(x_data)
 
 #------------------
 
+# Je nachdem Anzahl Polynome anpassen
+
 def f1(x):
     return x**4
 def f2(x):
