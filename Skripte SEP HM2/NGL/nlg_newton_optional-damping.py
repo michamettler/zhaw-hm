@@ -1,11 +1,11 @@
 import sympy as sp
 import numpy as np
 
-# SymPy Symbole und Matrixdefinition
+# SymPy Symbole und Matrixdefinition, falls nötig mit z erweitern
 x, y = sp.symbols('x, y')
 A = sp.Matrix([x, y])
 
-# Definition der Funktionen
+# Definition der Funktionen, falls nötig mit Funktionen erweitern
 f1 = x**2 + y-11
 f2 = x + y**2 - 7
 f = sp.Matrix([f1, f2])
