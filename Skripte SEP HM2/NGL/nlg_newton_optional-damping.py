@@ -22,6 +22,7 @@ x = np.array([1., 1.])
 i = 1
 tol = 1e-4
 damping = True  # Dämpfung ein-/ausschalten
+kmax = 19  # max number of iterations
 
 # Iteration
 while np.linalg.norm(f(x), 2) >= tol:
@@ -29,7 +30,6 @@ while np.linalg.norm(f(x), 2) >= tol:
     
     if damping:
         # Dämpfung aktivieren
-        kmax = 19  # max number of iterations
         k = 0
         while (k <= kmax) and (np.linalg.norm(f(x + delta / 2**k), 2) >= np.linalg.norm(f(x), 2)):
             k = k + 1
