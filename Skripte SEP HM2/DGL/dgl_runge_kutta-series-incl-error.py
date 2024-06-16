@@ -7,17 +7,18 @@ def f(x, y):
     return x/y
 
 def y_exact(x):
-    return x/2. + 9./(2.*x)
+    return np.sqrt(x**2-3)
 
-y0 = 2.
-a = 1.
-b = 6.
-h = 0.01
+y0 = 1.
+a = 2.
+b = 5.
+h = 0.1
 n = int((b-a)/h)
 print("n = ", n)
 
 # --------------------------------------------------------------------
 
+"""
 def R4_klassisch(f, a, b, n, y0):
     x = np.zeros(n+1)
     x[0] = a
@@ -41,6 +42,7 @@ plt.plot(x, y_klassisch, color="blue", linestyle="--", label="Lösung mit klassi
 plt.plot(x, y_exact(x), color="purple", linestyle=":", label="Exakte Lösung")
 plt.legend()
 plt.show()
+"""
 
 
 # Eigenes Butcher-Tableau
@@ -78,7 +80,7 @@ def RK4_eigen(f, a, b, n, y0):
 x, y_eigen = RK4_eigen(f, a, b, n, y0)
 plt.figure(2)
 plt.plot(x, y_eigen, color="red", linestyle="-", label="Lösung mit eigenem R4")
-plt.plot(x, y_klassisch, color="blue", linestyle="--", label="Lösung mit klassischem R4")
+#plt.plot(x, y_klassisch, color="blue", linestyle="--", label="Lösung mit klassischem R4")
 plt.plot(x, y_exact(x), color="purple", linestyle=":", label="Exakte Lösung")
 plt.xlabel("x"); plt.ylabel("y"); plt.grid()
 plt.legend()
@@ -86,7 +88,37 @@ plt.show()
 
 plt.figure(3)
 plt.semilogy(x, np.abs(y_eigen-y_exact(x)), color="red", linestyle="-", label="absoluter Fehler mit eigenem R4")
-plt.semilogy(x, np.abs(y_klassisch-y_exact(x)), color="blue", linestyle="-", label="absoluter Fehler mit klassischem R4")
+#plt.semilogy(x, np.abs(y_klassisch-y_exact(x)), color="blue", linestyle="-", label="absoluter Fehler mit klassischem R4")
 plt.xlabel("x"); plt.grid()
 plt.legend()
 plt.show()
+
+
+h_values = [1, 0.1, 0.01, 0.001]
+y_exact_5 = y_exact(5.0)
+
+# Fehler berechnen
+errors = []
+for h in h_values:
+    n = int((b - a) / h)
+    t, y_numerical = RK4_eigen(f, a, b, n, y0)
+    y_5 = y_numerical[-1]
+    error = np.abs(y_5 - y_exact_5)
+    errors.append(error)
+    print(f"h = {h:.6f}, y(5) = {y_5:.6f}, error = {error:.6e}")
+
+# Doppelt logarithmischer Plot
+plt.figure()
+plt.loglog(h_values, errors, 'o-', label='Fehler')
+plt.xlabel('Schrittweite h')
+plt.ylabel('Fehler |y(5) - y_exact(5)|')
+plt.title('Konvergenz des RK3-Verfahrens')
+plt.grid(True, which='both', ls='--')
+plt.legend()
+plt.show()
+
+# Konvergenzordnung berechnen
+log_h = np.log(h_values)
+log_errors = np.log(errors)
+p = np.polyfit(log_h, log_errors, 1)[0]
+print(f"Die Konvergenzordnung des Verfahrens beträgt: {p:.2f}")
