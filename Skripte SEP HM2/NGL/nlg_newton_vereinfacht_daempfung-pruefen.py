@@ -6,7 +6,7 @@ def f(x):
     f2 = x[0] + x[1]**2 - 7
     return np.array([f1, f2])
 
-# Jacobi-Matrix Df = [[df1dx1, df1dx2], [df2dx1, df2dx2]] von f
+# Jacobi-Matrix Df = [[df1dx1, df1dx2], [df2dx1, df2dx2]] von f, ablesen von Jupyter Notebook
 def Df(x):
     df1dx1 = 2.*x[0]
     df1dx2 = 1.

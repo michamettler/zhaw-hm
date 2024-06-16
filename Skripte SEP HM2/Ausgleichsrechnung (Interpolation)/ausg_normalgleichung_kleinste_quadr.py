@@ -5,28 +5,31 @@ import matplotlib.pyplot as plt
 
 # INPUT
 
-x_data = np.arange(0, 110, 10)
-y_data = np.array([999.9, 999.7, 998.2, 995.7, 992.2, 988.1,\
-                   983.2, 977.8, 971.8, 965.3, 958.4])
+x_data = np.array([0, 1, 2, 3, 4, 5])
+y_data = np.array([0.54, 0.44, 0.28, 0.18, 0.12, 0.08])
 n = np.size(x_data)
 
 #------------------
 
 def f1(x):
-    return x**2
+    return x**4
 def f2(x):
-    return x
+    return x**3
 def f3(x):
+    return x**2
+def f4(x):
+    return x
+def f5(x):
     return 1
-m = 3
+m = 5
 
 A = np.zeros((n, m))
 for i in range(0, n):
-    A[i, 0:m] = np.array([f1(x_data[i]), f2(x_data[i]), f3(x_data[i])])
+    A[i, 0:m] = np.array([f1(x_data[i]), f2(x_data[i]), f3(x_data[i]), f4(x_data[i]), f5(x_data[i])])
 
 A_T = np.transpose(A)
 lam = np.linalg.solve(A_T @ A, A_T @ y_data)
-print('lam =', lam)
+print('lam =', lam) # Koeffizienten des Polynoms
 
 Q, R = np.linalg.qr(A)
 Q_T = np.transpose(Q)
