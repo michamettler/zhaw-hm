@@ -3,27 +3,25 @@ import matplotlib.pyplot as plt
 
 # INPUT
 
-x_data = np.array([0, 1, 2, 3, 4, 5])
-y_data = np.array([0.54, 0.44, 0.28, 0.18, 0.12, 0.08])
+x_data = np.array([0., 10., 20., 30., 40., 50., 60., 70., 80., 90., 100., 110.])
+y_data = np.array([76., 92., 106., 123., 137., 151., 179., 203., 227., 250., 281., 309.])
 n = np.size(x_data)
 
 # Je nachdem Anzahl Polynome anpassen
 
 def f1(x):
-    return x**4
-def f2(x):
     return x**3
-def f3(x):
+def f2(x):
     return x**2
-def f4(x):
+def f3(x):
     return x
-def f5(x):
+def f4(x):
     return 1
-m = 5
+m = 4
 
 A = np.zeros((n, m))
 for i in range(0, n):
-    A[i, 0:m] = np.array([f1(x_data[i]), f2(x_data[i]), f3(x_data[i]), f4(x_data[i]), f5(x_data[i])])
+    A[i, 0:m] = np.array([f1(x_data[i]), f2(x_data[i]), f3(x_data[i]), f4(x_data[i])])
 
 A_T = np.transpose(A)
 lam = np.linalg.solve(A_T @ A, A_T @ y_data)
@@ -52,7 +50,7 @@ plt.show()
 print('Konditionszahl von A^T*A bez. 2-er Norm =', np.linalg.cond(A_T @ A, 2))
 print('Konditionszahl von R bez. 2-er Norm =', np.linalg.cond(R, 2))
 
-lam_poly = np.polyfit(x_data, y_data, 4)  # Fit a 4th order polynomial
+lam_poly = np.polyfit(x_data, y_data, m-1)
 print('lam_poly =', lam_poly)
 print('||lam - lam_poly|| =', np.linalg.norm(lam - lam_poly[::-1]))  # Compare correctly ordered lam
 
